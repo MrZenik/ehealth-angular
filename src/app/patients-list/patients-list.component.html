@@ -1,0 +1,23 @@
+<div class="flex-container">
+
+  <div class="patients-container">
+    <div class="search">
+      <div class="input-group" >
+        <input type="text" class="form-control" placeholder="Пошук" (change)="searchPatients(search.value)" #search>
+        <button (click)="searchPatients(search.value)" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+        <button class="btn btn-outline-primary ml-1" (click)="newPatient()"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+    <ul>
+      <li *ngFor="let patient of patients" class="patient" (click)="getPatientById(patient.id)">
+        {{patient.fullName}} <br>
+        {{patient.birthday}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="information">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

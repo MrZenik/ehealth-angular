@@ -1,0 +1,52 @@
+<div *ngIf="patient">
+  <div class="small-information">
+
+    <div class="btn-group float-end" *ngIf="!updating">
+      <button class="btn btn-outline-primary" (click)="updatePatient()"><i class="fa fa-pencil"></i>Редагувати</button>
+      <button class="btn btn-outline-danger" (click)="deletePatient(patient.id)"><i class="fa fa-trash"></i>Видалити</button>
+    </div>
+    <div class="btn-group float-end" *ngIf="updating">
+      <button class="btn btn-outline-success" (click)="confirmUpdating(updatedPatient.value)"><i class="fa fa-check"></i>Зберегти</button>
+      <button class="btn btn-outline-danger" (click)="cancelUpdating()"><i class="fa fa-times"></i>Скасувати</button>
+    </div>
+
+    <h5 class="mt-1">{{patient.fullName}}</h5>
+  </div>
+  <div class="flex-container">
+    <div class="detailed-information">
+
+      <form [formGroup]="updatedPatient" *ngIf="updating">
+        <p>Повне ім'я: <input value="{{patient.fullName}}" class="form-control" formControlName="fullName"></p>
+        <p>Дата народження:
+          <input type="date" value="{{patient.birthday}}" class="form-control" formControlName="birthday"/>
+        </p>
+        <p>Стать:
+          <select class="form-select form-control" formControlName="sex">
+            <option selected disabled>Виберіть</option>
+            <option value="Чоловіча">Чоловіча</option>
+            <option value="Жіноча">Жіноча</option>
+          </select>
+        </p>
+        <p>Країна: <input value="{{patient.country}}" class="form-control"formControlName="country"/></p>
+        <p>Область: <input value="{{patient.state}}" class="form-control" formControlName="state"/></p>
+        <p>Адреса: <input value="{{patient.address}}" class="form-control"formControlName="address"/></p>
+      </form>
+
+      <div *ngIf="!updating">
+        <p><i>Дата народження:</i> <br> <b>{{patient.birthday}}</b></p>
+        <p><i>Стать:</i> <br> <b>{{patient.sex}}</b></p>
+        <p><i>Країна:</i> <br> <b>{{patient.country}}</b></p>
+        <p><i>Область:</i> <br> <b>{{patient.state}}</b></p>
+        <p><i>Адреса:</i> <br> <b>{{patient.address}}</b></p>
+      </div>
+
+      <div *ngIf="error">
+        <app-exception [error]="error"></app-exception>
+      </div>
+    </div>
+
+    <div class="comments">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

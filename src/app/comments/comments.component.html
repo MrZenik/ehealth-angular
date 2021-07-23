@@ -1,0 +1,20 @@
+<div class="comments-text">
+  <ul>
+    <div *ngIf="error">
+      <app-exception [error]="error"></app-exception>
+    </div>
+    <h5 class="record">Коментарі</h5>
+    <li *ngFor="let comment of comments" class="record">
+      <div class="btn-group me-2 mt-1 float-end">
+        <button class="btn btn-outline-primary" (click)="updateComment(comment.id)"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-outline-danger" (click)="deleteComment(comment.id)"><i class="fa fa-trash"></i></button>
+      </div>
+      <i>Дата: {{comment.addedAt}}</i>
+      <p>{{comment.comment}}</p>
+    </li>
+  </ul>
+</div>
+<div class="input-group col-auto">
+  <input type="text" class="form-control" placeholder="Додати коментар" #newComment/>
+  <button type="button" class="btn btn-outline-secondary" (click)="createComment(newComment.value); newComment.value=''">Додати</button>
+</div>

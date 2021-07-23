@@ -1,0 +1,28 @@
+<div class="new-patient">
+  <div class="small-information">
+    <div *ngIf="error" class="float-end">
+      <app-exception [error]="error"></app-exception>
+    </div>
+    <h5>Додати нового пацієнта</h5>
+  </div>
+  <div>
+    <form [formGroup]="patient" (ngSubmit)="submit(patient.value)">
+      <p>Повне ім'я: <input type="text" class="form-control" formControlName="fullName"/></p>
+      <p>Дата народження: <input type="date" class="form-control" formControlName="birthday"/></p>
+      <p>Стать:
+        <select class="form-select form-control" formControlName="sex">
+          <option selected disabled>Виберіть</option>
+          <option value="Чоловіча">Чоловіча</option>
+          <option value="Жіноча">Жіноча</option>
+        </select>
+      </p>
+      <p>Країна: <input type="text" class="form-control" formControlName="country"/></p>
+      <p>Область: <input type="text" class="form-control" formControlName="state"/></p>
+      <p>Адреса: <input type="text" class="form-control" formControlName="address"/></p>
+      <div class="ml-3 btn-group float-end">
+        <button type="submit" class="btn btn-outline-success"><i class="fa fa-check"></i>Зберегти</button>
+        <button class="btn btn-outline-danger" (click)="cancel()"><i class="fa fa-times"></i>Скасувати</button>
+      </div>
+    </form>
+  </div>
+</div>

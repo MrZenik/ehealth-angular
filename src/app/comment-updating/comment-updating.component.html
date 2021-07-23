@@ -1,0 +1,15 @@
+<div *ngIf="comment">
+  <div class="small-information">
+    <div class="float-end btn-group">
+      <button class="btn btn-outline-success" (click)="confirm(newComment.value)"><i class="fa fa-check"></i></button>
+      <button class="btn btn-outline-danger" (click)="cancel()"><i class="fa fa-times"></i></button>
+    </div>
+    <h5>Редагування коментаря</h5>
+  </div>
+  <div *ngIf="error">
+    <app-exception [error]="error"></app-exception>
+  </div>
+  <textarea class="form-control mt-3" value="{{comment.comment}}" #newComment></textarea>
+</div>
+
+
